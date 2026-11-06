@@ -1,0 +1,1 @@
+{ "name": "skill-router", "version": "0.1.0", "description": "Elige la skill instalada más adecuada para cada petición, la reescribe mejorada y la envía a esa skill" }
