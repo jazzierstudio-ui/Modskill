@@ -1,0 +1,5 @@
+{
+  "name": "modskill",
+  "owner": { "name": "jazzierstudio-ui" },
+  "plugins": [{ "name": "skill-router", "source": "./skill-router" }]
+}

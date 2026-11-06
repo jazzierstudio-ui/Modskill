@@ -16,3 +16,21 @@ En el transcript aparece una línea como:
 ```
 
 Empieza una petición con `--` para saltarte el router. Los comandos `/...` nunca se enrutan.
+
+## Instalación
+
+En la terminal de Claude Code:
+
+```
+/plugin install skill-router --marketplace jazzierstudio-ui/modskill
+```
+
+Desde una shell:
+
+```
+claude plugin install skill-router --marketplace jazzierstudio-ui/modskill
+```
+
+En la app de escritorio: pulsa + junto al cuadro de texto → Plugins → Add marketplace con `jazzierstudio-ui/modskill` → Add plugin.
+
+Responde `y` a "Add marketplace?" y elige el ámbito *user* para tenerlo en todas tus sesiones.
