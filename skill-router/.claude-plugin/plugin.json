@@ -1,1 +1,1 @@
-{ "name": "skill-router", "version": "0.3.0", "description": "Mejora cada petición y la envía a la mejor skill, agente, conector o herramienta; si falta una skill, busca y recomienda las mejores o crea una" }
+{ "name": "skill-router", "version": "0.4.0", "description": "Botón para activar un router que mejora cada petición, elige la mejor skill o herramienta y el modelo según la complejidad, gastando los mínimos tokens", "types": "./types/index.d.ts" }

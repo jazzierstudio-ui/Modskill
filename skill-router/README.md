@@ -1,50 +1,42 @@
 # skill-router
 
-Mod de Claude Code con un hook `prompt.submit` cuya misión es sacar el mejor resultado de cada petición. Antes de procesarla:
-
-1. **Mejora la petición**: la reescribe más clara y completa, sin cambiar la intención.
-2. **Elige la mejor herramienta**: una skill instalada, un tipo de agente, un conector MCP o una herramienta integrada. Lo decide un *fork* de la sesión, que ve todo lo disponible con sus descripciones; en la primera petición, `haiku` con los nombres de las skills.
-3. **Si falta una skill**: pide a Claude que busque skills populares y seguras para la tarea, te recomiende 1-3 (sin instalar nada sin tu confirmación) y, si no hay ninguna buena, cree una específica con `skill-creator`.
-4. Si no hace falta nada especial, la petición sigue tal cual.
+Mod de Claude Code que saca el mejor resultado de cada petición gastando los mínimos tokens. Todo es automático: solo hay un botón para encenderlo o apagarlo.
 
 ## Cómo se ve
 
-Encima de la respuesta aparece una línea gris, y la barra de estado muestra el modo y la última elección:
+Una **banda encima del cuadro de texto** (no es un panel aparte ni va dentro del mensaje):
 
 ```
-🧭 skill-router: skill · seal-copilot:diagnose-drop · pregunta por la causa de una caída
-   ↳ petición mejorada: ...            (solo con /router ver)
-🔎 skill-router: falta skill · conversión de facturas a CSV · ninguna instalada lo cubre
-🧭 skill-router: ninguna · conversación general → sigue normal
+[🧭 Router: ON]  [Modelo: auto]   marketing:content-creation · simple → haiku/low
+╭──────────────────────────────────────────────╮
+│ > escribe aquí tu petición                    │
+╰──────────────────────────────────────────────╯
 ```
 
-## Comandos y modos
+- **🧭 Router: ON / OFF**: enciende o apaga el mod. Se recuerda entre sesiones.
+- **Modelo: auto / el mío**: en *auto* elige el modelo según la complejidad; en *el mío* usa tu modelo y solo te dice cuál recomendaría.
+- A la derecha, la última elección: skill o herramienta · complejidad → modelo/esfuerzo.
 
-| Comando | Qué hace |
-| --- | --- |
-| `/router` | estado y ayuda |
-| `/router auto` (o `on`) | enruta todas las peticiones (modo por defecto) |
-| `/router manual` | solo enruta las que empiezan con `>>` |
-| `/router off` | lo apaga |
-| `/router ver` | muestra también la petición mejorada (otra vez para ocultarla) |
-| `/router skills` o `/skills-sugeridas` | las skills instaladas más útiles para el proyecto actual, cuándo usarlas y una frase de ejemplo |
+Y en la conversación, encima de la respuesta, una línea gris con lo mismo y el motivo.
 
-Prefijos: `>>` fuerza el enrutado en cualquier modo; `--` lo salta en modo automático. Los comandos `/...` nunca se enrutan. El modo elegido se recuerda entre sesiones.
+## Qué hace en cada petición
+
+1. **Filtro gratis**: saludos y respuestas cortas («gracias», «ok», «sigue») pasan sin gastar nada.
+2. **Clasifica con Haiku** (unos cientos de tokens, con la lista de skills en caché): tipo de tarea, la mejor skill / agente / herramienta y la complejidad.
+3. **Mejora la petición**: la reescribe clara y concisa, sin cambiar la intención.
+4. **Elige el modelo** (con *Modelo: auto*): simple → Haiku (esfuerzo bajo), media → Sonnet (medio), compleja → Opus (alto). Solo para ese turno.
+5. **Si falta una skill**: busca skills populares y seguras, te recomienda 1-3 sin instalar nada y, si no hay ninguna buena, crea una.
+
+Empieza una petición con `--` para saltarte el router una vez.
+
+Nota: cambiar de modelo entre turnos obliga a volver a leer el contexto en el nuevo modelo. En conversaciones muy largas puede salir más barato poner *Modelo: el mío*.
 
 ## Instalación
 
-En la terminal de Claude Code:
-
-```
-/plugin install skill-router --marketplace jazzierstudio-ui/modskill
-```
-
-Desde una shell:
+En la terminal:
 
 ```
 claude plugin install skill-router --marketplace jazzierstudio-ui/modskill
 ```
 
-En la app de escritorio: pulsa + junto al cuadro de texto → Plugins → Add marketplace con `jazzierstudio-ui/modskill` → Add plugin.
-
-Responde `y` a "Add marketplace?" y elige el ámbito *user* para tenerlo en todas tus sesiones.
+Para actualizar: `claude plugin update skill-router`.
