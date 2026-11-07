@@ -7,15 +7,29 @@ Mod de Claude Code con un hook `prompt.submit` cuya misión es sacar el mejor re
 3. **Si falta una skill**: pide a Claude que busque skills populares y seguras para la tarea, te recomiende 1-3 (sin instalar nada sin tu confirmación) y, si no hay ninguna buena, cree una específica con `skill-creator`.
 4. Si no hace falta nada especial, la petición sigue tal cual.
 
-En el transcript aparece una línea como:
+## Cómo se ve
+
+Encima de la respuesta aparece una línea gris, y la barra de estado muestra el modo y la última elección:
 
 ```
 🧭 skill-router: skill · seal-copilot:diagnose-drop · pregunta por la causa de una caída
-🔎 skill-router: falta skill · conversión de facturas a CSV · ninguna skill instalada lo cubre
+   ↳ petición mejorada: ...            (solo con /router ver)
+🔎 skill-router: falta skill · conversión de facturas a CSV · ninguna instalada lo cubre
 🧭 skill-router: ninguna · conversación general → sigue normal
 ```
 
-Empieza una petición con `--` para saltarte el router. Los comandos `/...` nunca se enrutan.
+## Comandos y modos
+
+| Comando | Qué hace |
+| --- | --- |
+| `/router` | estado y ayuda |
+| `/router auto` (o `on`) | enruta todas las peticiones (modo por defecto) |
+| `/router manual` | solo enruta las que empiezan con `>>` |
+| `/router off` | lo apaga |
+| `/router ver` | muestra también la petición mejorada (otra vez para ocultarla) |
+| `/router skills` o `/skills-sugeridas` | las skills instaladas más útiles para el proyecto actual, cuándo usarlas y una frase de ejemplo |
+
+Prefijos: `>>` fuerza el enrutado en cualquier modo; `--` lo salta en modo automático. Los comandos `/...` nunca se enrutan. El modo elegido se recuerda entre sesiones.
 
 ## Instalación
 

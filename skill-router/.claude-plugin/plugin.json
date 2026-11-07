@@ -1,1 +1,1 @@
-{ "name": "skill-router", "version": "0.2.0", "description": "Mejora cada petición y la envía a la mejor skill, agente, conector o herramienta; si falta una skill, busca y recomienda las mejores o crea una" }
+{ "name": "skill-router", "version": "0.3.0", "description": "Mejora cada petición y la envía a la mejor skill, agente, conector o herramienta; si falta una skill, busca y recomienda las mejores o crea una" }
