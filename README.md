@@ -40,3 +40,13 @@ claude plugin install skill-router --marketplace jazzierstudio-ui/modskill
 ```
 
 Para actualizar: `claude plugin update skill-router`.
+
+---
+
+# studio-asistente
+
+Asistente integral del estudio: tendencias semanales de reels/TikTok y estilos gráficos, ideas de sesiones, consultas de la web, SEO y métricas, coaching de contenido, edición de vídeo, diseño y ayuda con la cámara. Ver [studio-asistente/README.md](studio-asistente/README.md).
+
+```
+claude plugin install studio-asistente --marketplace jazzierstudio-ui/modskill
+```
